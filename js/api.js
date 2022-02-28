@@ -1,30 +1,44 @@
 
 const searchData =()=>{
-    const searchText = document.getElementById('search')
+
+    document.getElementById('spinner').style.display='block' 
+    document.getElementById('cards').innerHTML=` `
+
+
+    const searchText = document.getElementById('search').value
 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
 
     fetch(url)
     .then(res => res.json())
-    .then(data=> {
-        if (data.status==false){
-            document.getElementById('cards').innerHTML=``
-            
-        }
+    .then(data=>{
+        console.log(data);
+         if(data.data.length==0|| searchText.length==0 ){
+            document.getElementById('spinner').style.display='none' 
 
-    else{
-        displayData(data.data)
-    }
-})
+            document.getElementById('detail').innerHTML=``
+
+            document.getElementById('cards').innerHTML='No Results Found'
+            }
+
+        else{
+            document.getElementById('spinner').style.display='none' 
+
+             displayData(data.data.slice(0,20))
+
+           }
+        })
         
         
 }
+
 
 const displayData=phones=>{
     console.log(phones);
 
     const cards = document.getElementById('cards')
     cards.innerHTML=` `
+    document.getElementById('detail').innerHTML=``
 
     phones.forEach(phone=>{
 
