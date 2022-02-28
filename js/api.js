@@ -6,9 +6,18 @@ const searchData =()=>{
 
     fetch(url)
     .then(res => res.json())
-    .then(data=>
+    .then(data=> {
+        if (data.status==false){
+            document.getElementById('cards').innerHTML=``
+            
+        }
+
+    else{
+        displayData(data.data)
+    }
+})
         
-        displayData(data.data.slice(0,20)))
+        
 }
 
 const displayData=phones=>{
@@ -34,4 +43,42 @@ const displayData=phones=>{
        cards.appendChild(card)
     })
 
+}
+
+const displayDetail = info =>{
+
+    const url = `https://openapi.programming-hero.com/api/phone/${info}`
+
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>showDetail(data.data))
+}
+
+const showDetail = data =>{
+    console.log(data);
+const detailDiv = document.getElementById('detail')
+
+detailDiv.innerHTML=`<div class="card w-25 mx-auto mb-4">
+<img src="${data.image}" class=" w-75 mx-auto mt-4 card-img-top" alt="no results">
+<div class="card-body">
+  <h5 class="card-title"> <span class='fw-bold'>Name: </span>${data.name}</h5>
+  <p class="card-text"><span class='fw-bold'>Brand: </span>${data.brand}</p>
+  <p class="card-text"><span class='fw-bold'>Chip Set: </span>${data.mainFeatures.chipSet}</p>
+  <p class="card-text"><span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}</p>
+  <p class="card-text"> <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}</p>
+  <p id='sensors' class="card-text"><span class='fw-bold'>Sensors: </span></p>
+  <p class="card-text"><span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}</p>
+  <p class="card-text"><span class='fw-bold'>Release: </span>${data.releaseDate ? data.releaseDate : 'No Release Date Available'}</p>
+
+  </div>
+  </div>`
+
+  const sensorsId = document.getElementById('sensors')
+
+  data.mainFeatures.sensors.forEach(sensor=>{
+      const sensorP = document.createElement('p')
+      sensorP.innerText=sensor
+
+      sensorsId.appendChild(sensorP)
+  })
 }
