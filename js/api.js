@@ -3,6 +3,8 @@ const searchData =()=>{
 
     document.getElementById('spinner').style.display='block' 
     document.getElementById('cards').innerHTML=` `
+    cards.innerHTML=` `
+    document.getElementById('detail').innerHTML=``
 
 
     const searchText = document.getElementById('search').value
@@ -13,23 +15,20 @@ const searchData =()=>{
     .then(res => res.json())
     .then(data=>{
         console.log(data);
-         if(data.data.length==0|| searchText.length==0 ){
-            document.getElementById('spinner').style.display='none' 
+        document.getElementById('spinner').style.display='none' 
 
-            document.getElementById('detail').innerHTML=``
-
+         if(data.data.length==0 || searchText.length==0 ){
             document.getElementById('cards').innerHTML='No Results Found'
             }
 
         else{
-            document.getElementById('spinner').style.display='none' 
 
              displayData(data.data.slice(0,20))
 
            }
         })
-        
-        
+      
+        document.getElementById('search').value=''
 }
 
 
@@ -37,8 +36,6 @@ const displayData=phones=>{
     console.log(phones);
 
     const cards = document.getElementById('cards')
-    cards.innerHTML=` `
-    document.getElementById('detail').innerHTML=``
 
     phones.forEach(phone=>{
 
