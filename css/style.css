@@ -1,3 +1,5 @@
+/* spinner display will be none by default  */
+
 #spinner{
     display: none;
 }
