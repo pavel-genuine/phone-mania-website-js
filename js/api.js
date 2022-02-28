@@ -1,28 +1,34 @@
 
+// searchData function 
 const searchData =()=>{
 
+    // setting defaults empty strings 
     document.getElementById('spinner').style.display='block' 
-    document.getElementById('cards').innerHTML=` `
-    cards.innerHTML=` `
+    document.getElementById('cards').innerHTML=``
     document.getElementById('detail').innerHTML=``
+    document.getElementById('counts').innerHTML=``
 
 
     const searchText = document.getElementById('search').value
 
+    // setting url with searchText dynamically
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
 
+    // fetch data 
     fetch(url)
     .then(res => res.json())
     .then(data=>{
         console.log(data);
         document.getElementById('spinner').style.display='none' 
 
+        // error handling if unexpected keywords searched 
          if(data.data.length==0 || searchText.length==0 ){
             document.getElementById('cards').innerHTML='No Results Found'
             }
 
         else{
 
+            // showing first 20 results 
              displayData(data.data.slice(0,20))
 
            }
@@ -32,15 +38,23 @@ const searchData =()=>{
 }
 
 
+// displayData function 
 const displayData=phones=>{
     console.log(phones);
 
     const cards = document.getElementById('cards')
 
+    // results counter text setting 
+     document.getElementById('counts').innerText=' results found'
+    document.getElementById('result-count').innerText=0
     phones.forEach(phone=>{
 
+       // results counter text increasing
+         document.getElementById('result-count').innerText++
         const card =document.createElement('div')
         card.classList.add('col')
+
+        // geting data from api dynamically
         card.innerHTML=`
         <div class="card w-75">
           <img src="${phone.image}" class=" w-75 mx-auto mt-4 card-img-top" alt="no results">
@@ -52,12 +66,15 @@ const displayData=phones=>{
        </div>`
 
        cards.appendChild(card)
+
+       
     })
-
 }
-
+// displayDetail function 
 const displayDetail = info =>{
 
+
+// setting url dynamically with slug 
     const url = `https://openapi.programming-hero.com/api/phone/${info}`
 
     fetch(url)
@@ -69,6 +86,7 @@ const showDetail = data =>{
     console.log(data);
 const detailDiv = document.getElementById('detail')
 
+// getting data from api dynamically 
 detailDiv.innerHTML=`<div class="card w-25 mx-auto mb-4">
 <img src="${data.image}" class=" w-75 mx-auto mt-4 card-img-top" alt="no results">
 <div class="card-body">
