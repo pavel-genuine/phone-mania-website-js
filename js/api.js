@@ -15,7 +15,7 @@ const searchData =()=>{
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
 
     // fetch data 
-    fetch(url)
+     fetch(url)
     .then(res => res.json())
     .then(data=>{
         console.log(data);
@@ -47,8 +47,8 @@ const searchData =()=>{
               document.getElementById('show-more').addEventListener('click', ()=>{
                   displayData(data.data.slice(20,data.data.length))
                   document.getElementById('show-more').innerHTML=``
+                  document.getElementById('ending').innerHTML=`"No more results available"`
                   document.getElementById('result-count').innerText=20+data.data.slice(20,data.data.length).length
-
 
               })
             }
@@ -57,7 +57,6 @@ const searchData =()=>{
       
         document.getElementById('search').value=''
 }
-
 
 // displayData function 
 const displayData=phones=>{
@@ -88,12 +87,10 @@ const displayData=phones=>{
 
        cards.appendChild(card)
 
-       
     })
 }
 // displayDetail function 
 const displayDetail = info =>{
-
 
 // setting url dynamically with slug 
     const url = `https://openapi.programming-hero.com/api/phone/${info}`
@@ -111,37 +108,29 @@ const detailDiv = document.getElementById('detail')
 detailDiv.innerHTML=`
 
 <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center  my-4">
-         <div class='col'>
-<div class="card w-75 mx-auto mb-4 shadow ">
-<img src="${data.image}" class=" w-75  mx-auto mt-4 card-img-top" alt="no results">
-<div class="card-body">
-  <h5 class="card-title"> <span class='fw-bold'>Name: </span>${data.name}</h5>
-  <p class="card-text"><span class='fw-bold'>Brand: </span>${data.brand}</p>
-  <p class="card-text"><span class='fw-bold'>Main Features : </span> </p>
-
-  <p class="card-text"><span class='fw-bold'>Chip Set: </span>${data.mainFeatures.chipSet}</p>
-  <p class="card-text"><span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}</p>
-  <p class="card-text"> <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}</p>
-  <p id='sensors' class="card-text"><span class='fw-bold'>Sensors: </span></p>
-  <p class="card-text"><span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}</p>
-  <p class="card-text"><span class='fw-bold'>Other: </span> Bluetooth: ${data.others?.Bluetooth ? data.others?.Bluetooth :'none'},  
-  GPS: ${data.others?.GPS ? data.others?.GPS :'none'}, NFC: ${data.others?.NFC ? data.others?.NFC : 'none'}, Radio: ${data.others?.Radio ? data.others?.Radio : 'none'}, 
-  USB: ${data.others?.USB ? data.others?.USB : 'none' }, WLAN: ${data.others?.WLAN ? data.others?.WLAN : 'none '}</p>
+ <div class='col'>
+  <div class="card w-75 mx-auto mb-4 shadow ">
+   <img src="${data.image}" class=" w-75  mx-auto mt-4 card-img-top" alt="no results">
+   <div class="card-body">
+    <h5 class="card-title"> <span class='fw-bold'>Name: </span>${data.name}</h5>
+    <p class="card-text"><span class='fw-bold'>Brand: </span>${data.brand}</p>
+    <p class="card-text"><span class='fw-bold'>Main Features : </span> </p>
+    <p class="card-text"><span class='fw-bold'>Chip Set: </span>${data.mainFeatures.chipSet}</p>
+    <p class="card-text"><span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}</p>
+    <p class="card-text"> <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}</p>
+    <p id='sensors' class="card-text"><span class='fw-bold'>Sensors: </span></p>
+    <p class="card-text"><span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}</p>
+    <p class="card-text"><span class='fw-bold'>Other: </span> Bluetooth: ${data.others?.Bluetooth ? data.others?.Bluetooth :'No data found'},  
+      GPS: ${data.others?.GPS ? data.others?.GPS :'No data found'}, NFC: ${data.others?.NFC ? data.others?.NFC : 'No data found'}, Radio: ${data.others?.Radio ? data.others?.Radio : 'No data found'}, 
+      USB: ${data.others?.USB ? data.others?.USB : 'No data found' }, WLAN: ${data.others?.WLAN ? data.others?.WLAN : 'No data found'}</p>
   
-  <p class="card-text"><span class='fw-bold'>Release: </span>${data.releaseDate ? data.releaseDate : 'No Release Date Available'}</p>
+    <p class="card-text"><span class='fw-bold'>Release Date: </span>${data.releaseDate ? data.releaseDate : 'No Data Available'}</p>
 
   </div>
-  </div>
-  </div>
-  </div>`
+ </div>
+ </div>
+</div>`
 
-//   others:
-// Bluetooth: "5.0, A2DP, LE"
-// GPS: "Yes, with A-GPS, GLONASS, GALILEO, BDS, QZSS"
-// NFC: "Yes"
-// Radio: "No"
-// USB: "Lightning, USB 2.0"
-// WLAN: "Wi-Fi 802.11 a/b/g/
 //   getting sensors info 
   const sensorsId = document.getElementById('sensors')
 

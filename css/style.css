@@ -3,3 +3,8 @@
 #spinner{
     display: none;
 }
+
+/* cursor pointer  */
+#show-more{
+    cursor: pointer;
+}
