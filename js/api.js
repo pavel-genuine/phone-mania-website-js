@@ -9,7 +9,6 @@ const searchData =()=>{
     document.getElementById('counts').innerHTML=``
     document.getElementById('result-count').innerHTML=``
 
-
     const searchText = document.getElementById('search').value
 
     // setting url with searchText dynamically
@@ -30,8 +29,29 @@ const searchData =()=>{
         else{
 
             // showing first 20 results 
-             displayData(data.data.slice(0,20))
 
+            if (data.data.length <=20){
+                displayData(data.data)
+                document.getElementById('result-count').innerText=data.data.length
+            }
+
+            else {
+                displayData(data.data.slice(0,20))
+                document.getElementById('result-count').innerText=20
+
+
+                console.log(data.data);
+              document.getElementById('show-more').innerHTML=`
+              <p  class='text-primary'>Show more</p>`;
+              
+              document.getElementById('show-more').addEventListener('click', ()=>{
+                  displayData(data.data.slice(20,data.data.length))
+                  document.getElementById('show-more').innerHTML=``
+                  document.getElementById('result-count').innerText=20+data.data.slice(20,data.data.length).length
+
+
+              })
+            }
            }
         })
       
@@ -45,9 +65,7 @@ const displayData=phones=>{
 
     const cards = document.getElementById('cards')
 
-    // results counter text setting 
      document.getElementById('counts').innerText=' results found'
-    document.getElementById('result-count').innerText=0
     phones.forEach(phone=>{
 
        // results counter text increasing
