@@ -42,7 +42,7 @@ const searchData =()=>{
 
                 console.log(data.data);
               document.getElementById('show-more').innerHTML=`
-              <p  class='text-primary'>Show more</p>`;
+              <p  class='text-primary'>Show more ->> </p>`;
               
               document.getElementById('show-more').addEventListener('click', ()=>{
                   displayData(data.data.slice(20,data.data.length))
