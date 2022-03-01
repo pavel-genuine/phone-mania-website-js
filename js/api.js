@@ -8,8 +8,11 @@ const searchData =()=>{
     document.getElementById('detail').innerHTML=``
     document.getElementById('counts').innerHTML=``
     document.getElementById('result-count').innerHTML=``
+    document.getElementById('ending').innerHTML=``
+    document.getElementById('show-more').innerHTML=``
+ 
 
-    const searchText = document.getElementById('search').value
+    const searchText = document.getElementById('search').value.toLowerCase()
 
     // setting url dynamically with searchText 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
@@ -23,7 +26,8 @@ const searchData =()=>{
 
         // error handling if unexpected keywords searched 
          if(data.data.length==0 || searchText.length==0 ){
-            document.getElementById('cards').innerHTML='No Results Found'
+            document.getElementById('cards').innerHTML=
+            `<p class='text-secondary ms-5 fw-bold'>"No Results Found"</p>`
             }
 
         else{
@@ -32,6 +36,8 @@ const searchData =()=>{
             if (data.data.length <=20){
                 displayData(data.data)
                 document.getElementById('result-count').innerText=data.data.length
+                document.getElementById('ending').innerHTML=`"No more results available"`
+
             }
 
             // showing 20 results 
