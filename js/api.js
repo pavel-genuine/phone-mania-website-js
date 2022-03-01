@@ -75,7 +75,7 @@ const searchData =()=>{
 
 // displayData function 
 const displayData=phones=>{
-   
+
     const cards = document.getElementById('cards')
 
      document.getElementById('counts').innerText=' results found'
@@ -118,30 +118,25 @@ const detailDiv = document.getElementById('detail')
 
 // getting dynamically data from api  
 detailDiv.innerHTML=`
-
-<div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center  my-4">
- <div class='col'>
-  <div class="card w-75 mx-auto mb-4 shadow ">
+<div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center my-4">
+ <div class='col '>
+  <div class="card w-75 mx-auto mb-4 shadow">
    <img src="${data.image}" class=" w-75  mx-auto mt-4 card-img-top" alt="no results">
    <div class="card-body">
     <h5 class="card-title"> <span class='fw-bold'>Name: </span>${data.name}</h5>
     <p class="card-text"><span class='fw-bold'>Brand: </span>${data.brand}</p>
-    <p class="card-text"><span class='fw-bold'>Main Features : </span> </p>
-    <p class="card-text"><span class='fw-bold'>Chip Set: </span>${data.mainFeatures.chipSet}</p>
-    <p class="card-text"><span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}</p>
-    <p class="card-text"> <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}</p>
+    <p class="card-text"><span class='fw-bold'>Main Features : </span> <span class='fw-bold'>
+    Chip Set: </span>${data.mainFeatures.chipSet}, <span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}, 
+    <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}, <span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}.</p>
     <p id='sensors' class="card-text"><span class='fw-bold'>Sensors: </span></p>
-    <p class="card-text"><span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}</p>
     <p class="card-text"><span class='fw-bold'>Other: </span> Bluetooth: ${data.others?.Bluetooth ? data.others?.Bluetooth :'No data found'},  
       GPS: ${data.others?.GPS ? data.others?.GPS :'No data found'}, NFC: ${data.others?.NFC ? data.others?.NFC : 'No data found'}, Radio: ${data.others?.Radio ? data.others?.Radio : 'No data found'}, 
       USB: ${data.others?.USB ? data.others?.USB : 'No data found' }, WLAN: ${data.others?.WLAN ? data.others?.WLAN : 'No data found'}</p>
-  
     <p class="card-text"><span class='fw-bold'>Release Date: </span>${data.releaseDate ? data.releaseDate : 'No Data Available'}</p>
-
+  </div>
   </div>
  </div>
- </div>
-</div>`
+ </div>`
 
 //   getting sensors info 
   const sensorsId = document.getElementById('sensors')
