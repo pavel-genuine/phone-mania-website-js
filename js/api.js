@@ -34,6 +34,8 @@ const searchData =()=>{
 
             // showing less than 20 results 
             if (data.data.length <=20){
+            
+
                 displayData(data.data)
                 document.getElementById('result-count').innerText=data.data.length
                 document.getElementById('ending').innerHTML=`"No more results available"`
@@ -42,16 +44,22 @@ const searchData =()=>{
 
             // showing 20 results 
             else {
+             
+
                 displayData(data.data.slice(0,20))
                 document.getElementById('result-count').innerText=20
 
 
                
               document.getElementById('show-more').innerHTML=`
-              <p  class='text-primary'>Show more ->> </p>`;
+              <button  class='text-white bg-primary border-0 rounded-pill px-4 py-1 fw-bold '>Show more >></button>`;
               
             //   showing all results 
               document.getElementById('show-more').addEventListener('click', ()=>{
+               
+                document.getElementById('cards').innerHTML=``
+
+                  displayData(data.data.slice(0,20))
                   displayData(data.data.slice(20,data.data.length))
                   document.getElementById('show-more').innerHTML=``
                   document.getElementById('ending').innerHTML=`"No more results available"`
