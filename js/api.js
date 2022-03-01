@@ -11,7 +11,7 @@ const searchData =()=>{
 
     const searchText = document.getElementById('search').value
 
-    // setting url with searchText dynamically
+    // setting url dynamically with searchText 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
 
     // fetch data 
@@ -28,22 +28,23 @@ const searchData =()=>{
 
         else{
 
-            // showing first 20 results 
-
+            // showing less than 20 results 
             if (data.data.length <=20){
                 displayData(data.data)
                 document.getElementById('result-count').innerText=data.data.length
             }
 
+            // showing 20 results 
             else {
                 displayData(data.data.slice(0,20))
                 document.getElementById('result-count').innerText=20
 
 
-                console.log(data.data);
+               
               document.getElementById('show-more').innerHTML=`
               <p  class='text-primary'>Show more ->> </p>`;
               
+            //   showing all results 
               document.getElementById('show-more').addEventListener('click', ()=>{
                   displayData(data.data.slice(20,data.data.length))
                   document.getElementById('show-more').innerHTML=``
@@ -67,12 +68,10 @@ const displayData=phones=>{
      document.getElementById('counts').innerText=' results found'
     phones.forEach(phone=>{
 
-       // results counter text increasing
-         document.getElementById('result-count').innerText++
         const card =document.createElement('div')
         card.classList.add('col')
 
-        // geting data from api dynamically
+        // geting data dynamically from api 
         card.innerHTML=`
         <div class='d-flex justify-content-center align-items-center'>
         <div class="card w-75 shadow">
@@ -104,7 +103,7 @@ const showDetail = data =>{
     console.log(data);
 const detailDiv = document.getElementById('detail')
 
-// getting data from api dynamically 
+// getting dynamically data from api  
 detailDiv.innerHTML=`
 
 <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center  my-4">
