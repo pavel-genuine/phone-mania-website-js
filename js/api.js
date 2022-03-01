@@ -75,8 +75,7 @@ const searchData =()=>{
 
 // displayData function 
 const displayData=phones=>{
-    console.log(phones);
-
+   
     const cards = document.getElementById('cards')
 
      document.getElementById('counts').innerText=' results found'
@@ -114,7 +113,7 @@ const displayDetail = info =>{
 }
 
 const showDetail = data =>{
-    console.log(data);
+   
 const detailDiv = document.getElementById('detail')
 
 // getting dynamically data from api  
