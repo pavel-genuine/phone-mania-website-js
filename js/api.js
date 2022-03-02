@@ -92,7 +92,9 @@ const displayData=phones=>{
         <div class="card-body">
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">${phone.brand}</p>
-          <button onclick="displayDetail('${phone.slug}')" class='px-4 py-1 fw-bold bg-danger rounded border-0 text-white'>Detail</button>
+          <button onclick="displayDetail('${phone.slug}')" class='px-4 py-1 fw-bold bg-danger rounded border-0 text-white'>
+          <a class ='text-decoration-none text-white' href="#detail">Detail</a>
+          </button>
         </div>
         </div>
      </div>`
