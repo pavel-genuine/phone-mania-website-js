@@ -177,9 +177,9 @@ detailDiv.innerHTML=`
   const sensorsId = document.getElementById('sensors')
 
   data.mainFeatures.sensors.forEach(sensor=>{
-      const sensorP = document.createElement('span')
-      sensorP.innerHTML=`${sensor}, `
+      const sensorSpan = document.createElement('span')
+      sensorSpan.innerHTML=`${sensor}, `
 
-      sensorsId.appendChild(sensorP)
+      sensorsId.appendChild(sensorSpan)
   })
 }
