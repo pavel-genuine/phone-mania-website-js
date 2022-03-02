@@ -120,23 +120,58 @@ const detailDiv = document.getElementById('detail')
 detailDiv.innerHTML=`
 <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center my-4">
  <div class='col '>
-  <div class="card w-75 mx-auto mb-4 shadow">
-   <img src="${data.image}" class=" w-75  mx-auto mt-4 card-img-top" alt="no results">
-   <div class="card-body">
-    <h5 class="card-title"> <span class='fw-bold'>Name: </span>${data.name}</h5>
-    <p class="card-text"><span class='fw-bold'>Brand: </span>${data.brand}</p>
-    <p class="card-text"><span class='fw-bold'>Main Features : </span> <span class='fw-bold'>
-    Chip Set: </span>${data.mainFeatures.chipSet}, <span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}, 
-    <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}, <span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}.</p>
-    <p id='sensors' class="card-text"><span class='fw-bold'>Sensors: </span></p>
-    <p class="card-text"><span class='fw-bold'>Other: </span> Bluetooth: ${data.others?.Bluetooth ? data.others?.Bluetooth :'No data found'},  
-      GPS: ${data.others?.GPS ? data.others?.GPS :'No data found'}, NFC: ${data.others?.NFC ? data.others?.NFC : 'No data found'}, Radio: ${data.others?.Radio ? data.others?.Radio : 'No data found'}, 
-      USB: ${data.others?.USB ? data.others?.USB : 'No data found' }, WLAN: ${data.others?.WLAN ? data.others?.WLAN : 'No data found'}</p>
-    <p class="card-text"><span class='fw-bold'>Release Date: </span>${data.releaseDate ? data.releaseDate : 'No Data Available'}</p>
+ <div class="card w-75 mx-auto mb-4 shadow">
+<img src="${data.image}" class=" w-75  mx-auto mt-4 card-img-top" alt="no results">
+<div class="card-body">
+ <h5 class="card-title m-2"> <span class='fw-bold'>Name: </span>${data.name}</h5>
+ <h6 class="card-text m-2"><span class='fw-bold'>Brand: </span>${data.brand}</h6>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+    <span class='fw-bold'> Main Features:</span>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+    <div class="accordion-body">
+
+        <p class="card-text"> <span class='fw-bold'>
+            Chip Set: </span>${data.mainFeatures.chipSet}, <span class='fw-bold'>Display Size : </span>${data.mainFeatures.displaySize}, 
+            <span class='fw-bold'>Memory: </span>${data.mainFeatures.memory}, <span class='fw-bold'>Storage: </span>${data.mainFeatures.storage}.</p>            </div>
   </div>
+</div>
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+    <span class='fw-bold'>Sensors: </span>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+    <div class="accordion-body">
+        <p id='sensors' class="card-text"><span class='fw-bold'>Sensors: </span></p>
+    </div>
   </div>
- </div>
- </div>`
+</div>
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+    <span class='fw-bold'>Others: </span>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+    <div class="accordion-body">
+        <p class="card-text"><span class='fw-bold'>Bluetooth: </span> ${data.others?.Bluetooth ? data.others?.Bluetooth :'No data found'},  
+        <span class='fw-bold'>GPS: </span> ${data.others?.GPS ? data.others?.GPS :'No data found'}, <span class='fw-bold'>NFC: </span> ${data.others?.NFC ? data.others?.NFC : 'No data found'}, <span class='fw-bold'>Radio: </span>${data.others?.Radio ? data.others?.Radio : 'No data found'}, 
+        <span class='fw-bold'>USB: </span>${data.others?.USB ? data.others?.USB : 'No data found' }, <span class='fw-bold'>WLAN: </span>${data.others?.WLAN ? data.others?.WLAN : 'No data found'}</p>
+    </div>
+  </div>
+</div>
+</div>
+<p class="card-text mt-2 ms-3"><span class='fw-bold'>Release Date: </span>${data.releaseDate ? data.releaseDate : 'No Data Available'}</p>
+</div>
+</div>
+</div>
+</div>`
 
 //   getting sensors info 
   const sensorsId = document.getElementById('sensors')
