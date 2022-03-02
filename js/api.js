@@ -2,6 +2,9 @@
 // searchData function 
 const searchData =()=>{
 
+  const searchText = document.getElementById('search').value.toLowerCase()
+  document.getElementById('result-text').innerHTML=`<p>Search results for <span class=' text-primary'>"${searchText}"</span>`
+ 
   // setting defaults empty strings 
   document.getElementById('spinner').style.display='block' 
   document.getElementById('cards').innerHTML=``
@@ -10,9 +13,6 @@ const searchData =()=>{
   document.getElementById('result-count').innerHTML=``
   document.getElementById('ending').innerHTML=``
   document.getElementById('show-more').innerHTML=``
-
-
-  const searchText = document.getElementById('search').value.toLowerCase()
 
   // setting url dynamically with searchText 
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
@@ -27,7 +27,7 @@ const searchData =()=>{
       // error handling if unexpected keywords searched 
        if(data.data.length==0 || searchText.length==0 ){
           document.getElementById('cards').innerHTML=
-          `<p class='text-secondary ms-5 fw-bold'>"No Results Found"</p>`
+          `<p class='text-secondary text-center ms-5 fw-bold'>"No Results Found"</p>`
           }
 
       else{
@@ -175,3 +175,15 @@ data.mainFeatures.sensors.forEach(sensor=>{
     sensorsId.appendChild(sensorP)
 })
 }
+
+
+// Execute search button when the user press 'Enter' key on keybord
+document.getElementById('search').addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("searchBtn").click();
+  }
+});
